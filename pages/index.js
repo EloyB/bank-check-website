@@ -26,25 +26,25 @@ export default function Home() {
     <div className="relative">
       <div className="h-screen">
         <div
-          className={`w-full py-4 fixed z-50 bg-white ${
+          className={`w-full py-4 px-4 fixed z-50 bg-white ${
             hitScrollPoint ? "shadow-md" : "shadow-none"
           }`}
         >
           <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-            <Image src="/logo.svg" layout="intrinsic" width="200" height="75" />
+            <Image src="/logo.svg" layout="intrinsic" width="150" height="56" />
             <div className="flex items-center space-x-5">
               <p className="uppercase font-bold text-lg">Contact</p>
               {/* <p className="uppercase font-bold text-lg">Faq</p> */}
             </div>
           </div>
         </div>
-        <div className="relative max-w-screen-xl mx-auto h-3/4 flex items-center justify-center">
+        <div className="relative px-4 pt-20 max-w-screen-xl mx-auto h-3/4 flex items-center justify-center">
           <div className="space-y-5 w-full">
             <div className="text-center space-y-3">
-              <p className="text-7xl font-bold">
+              <p className="text-5xl sm:text-7xl font-bold">
                 Vul je <span className="text-secondary">link</span> in
               </p>
-              <p className="text-2xl">En laat hem automatisch controleren op phishing</p>
+              <p className="text-lg sm:text-2xl">En laat hem automatisch controleren op phishing</p>
             </div>
             <div className="w-full flex space-x-5">
               <input
@@ -64,23 +64,23 @@ export default function Home() {
         </div>
       </div>
       <div
-        className="py-40 max-w-screen-xl mx-auto space-y-5 flex flex-col justify-center items-center"
+        className="py-40 px-4 max-w-screen-xl mx-auto space-y-5 flex flex-col justify-center items-center"
         style={{
           backgroundImage: "url('/hook.svg')",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
       >
-        <p className="text-7xl font-bold text-center">
+        <p className="text-5xl sm:text-7xl font-bold text-center">
           Laat je niet vangen door <span className="text-secondary">phishing</span>
         </p>
-        <p className="text-2xl text-center">
+        <p className="text-lg sm:text-2xl text-center">
           [phi·shing] - oplichterij waarbij iemand via email of internet geheime financiële gegevens
           afhandig worden gemaakt
         </p>
       </div>
-      <div className="py-20 max-w-screen-xl mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-5">
+      <div className="py-10 px-4 max-w-screen-xl mx-auto grid gap-5 content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex items-center space-x-5 lg:justify-start">
           <div className="rounded-full w-20 h-20 bg-secondary flex items-center justify-center">
             <CurrencyDollarIcon className="w-10 h-10 text-white" />
           </div>
@@ -89,7 +89,7 @@ export default function Home() {
             <p>gestolen door phishers</p>
           </div>
         </div>
-        <div className="flex items-center space-x-5">
+        <div className="flex items-center space-x-5 lg:justify-center">
           <div className="rounded-full w-20 h-20 bg-secondary flex items-center justify-center">
             <ChatIcon className="w-10 h-10 text-white" />
           </div>
@@ -98,7 +98,7 @@ export default function Home() {
             <p>verdachte berichten verstuurd</p>
           </div>
         </div>
-        <div className="flex items-center space-x-5">
+        <div className="flex items-center space-x-5 lg:justify-end">
           <div className="rounded-full w-20 h-20 bg-secondary flex items-center justify-center">
             <ArchiveIcon className="w-10 h-10 text-white" />
           </div>
@@ -108,7 +108,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="py-10 max-w-screen-xl mx-auto space-y-3">
+      <div className="py-10 px-4 max-w-screen-xl mx-auto space-y-3">
         <h1 className="text-3xl font-semibold">Een diepere duik in phishing</h1>
         <p className="text-lg max-w-screen-lg">
           Phishing is een vorm van cybercriminaliteit waarbij men aan de hand van een valse email,
@@ -117,7 +117,7 @@ export default function Home() {
           bijvoorbeeld aan je bankaccounts komen of nog erger, je identiteit stelen.
         </p>
       </div>
-      <div className="py-10 max-w-screen-xl mx-auto space-y-3">
+      <div className="py-10 px-4 max-w-screen-xl mx-auto space-y-3">
         <h1 className="text-3xl font-semibold">Verschillende vormen en maten</h1>
         <p className="text-lg max-w-screen-lg">
           Phishing komt voor op veel verschillende manieren. Zo kan iemand zich voordoen als jou
@@ -127,7 +127,7 @@ export default function Home() {
           hiermee gestolen, ook wachtwoorden, identiteiten of eender welke persoonlijke gegevens.
         </p>
       </div>
-      <div className="py-10 max-w-screen-xl mx-auto space-y-3">
+      <div className="py-10 px-4 max-w-screen-xl mx-auto space-y-3">
         <h1 className="text-3xl font-semibold">
           En toen was er <span className="text-secondary">BankCheck</span>{" "}
         </h1>
