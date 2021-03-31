@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
   ArchiveIcon,
@@ -7,37 +6,27 @@ import {
   ChatIcon,
   CurrencyDollarIcon,
 } from "@heroicons/react/outline";
-
+import { useRouter } from "next/router";
+import Navbar from "../components/navbar";
 export default function Home() {
-  const [hitScrollPoint, setHitScrollPoint] = useState(false);
+  const [url, setUrl] = useState("");
+  const router = useRouter();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setHitScrollPoint(true);
-      } else {
-        setHitScrollPoint(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-  }, []);
+  const testUrl = async () => {
+    const response = await fetch("https://bank-check.be/api/test_url?url=" + url, {
+      method: "POST",
+      mode: "cors",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.json();
+  };
 
   return (
     <div className="relative">
       <div className="h-screen">
-        <div
-          className={`w-full py-4 px-4 fixed z-50 bg-white ${
-            hitScrollPoint ? "shadow-md" : "shadow-none"
-          }`}
-        >
-          <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-            <Image src="/logo.svg" layout="intrinsic" width="150" height="56" />
-            <div className="flex items-center space-x-5">
-              <p className="uppercase font-bold text-lg">Contact</p>
-              {/* <p className="uppercase font-bold text-lg">Faq</p> */}
-            </div>
-          </div>
-        </div>
         <div className="relative px-4 pt-20 max-w-screen-xl mx-auto h-3/4 flex items-center justify-center">
           <div className="space-y-5 w-full">
             <div className="text-center space-y-3">
@@ -51,8 +40,27 @@ export default function Home() {
                 className="p-5 bg-gray-50 w-full rounded-lg focus:outline-none ring-2 ring-gray-200 focus:ring-secondary"
                 type="text"
                 placeholder="Vul hier je link in..."
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
               />
-              <div className="p-5 bg-secondary cursor-pointer rounded-lg">
+              <div
+                className="p-5 bg-secondary cursor-pointer rounded-lg"
+                onClick={() =>
+                  testUrl().then((data) => {
+                    if (data.status === "error") {
+                      router.push({
+                        pathname: "/responses/error",
+                        query: data,
+                      });
+                    } else if (data.status === "success") {
+                      router.push({
+                        pathname: "/responses/success",
+                        query: data,
+                      });
+                    }
+                  })
+                }
+              >
                 <ArrowRightIcon className="w-6 h-6 text-white" />
               </div>
             </div>
