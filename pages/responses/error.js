@@ -1,38 +1,75 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useRouter } from "next/router";
 import { ArrowCircleDownIcon, XCircleIcon } from "@heroicons/react/outline";
 
 export default function error() {
   const router = useRouter();
   const query = router.query;
+  const infoRef = useRef();
   return (
-    <>
-      <div className="relative h-screen px-4 flex flex-col items-center justify-center space-y-10">
+    <div>
+      <div className="relative h-screen py-28 px-4 flex flex-col items-center justify-center space-y-10">
         <p className="text-5xl sm:text-7xl font-bold text-center">
           <span className="text-secondary">Resultaat</span> van jouw link
         </p>
-        <div className="w-full max-w-screen-xl mx-auto ring-2 ring-red-500 rounded-md p-10 flex flex-col items-center space-y-5">
-          <XCircleIcon className="w-24 h-24 sm:w-32 sm:h-32 text-red-500" />
-          <div className="flex-col items-start">
-            <p className="text-center sm:text-xl md:text-3xl">{query.message}</p>
+        <div className="space-y-5 divide-y-2 sm:divide-y-0">
+          <div className="flex flex-col sm:flex-row sm:space-y-0 sm:space-x-5 items-center space-y-3 lg:justify-start">
+            <div className="rounded-full w-14 h-14 sm:h-20 sm:w-20 bg-red-500 flex items-center justify-center">
+              <XCircleIcon className="w-10 h-10 text-white" />
+            </div>
+            <div>
+              <p className="text-center sm:text-left text-lg">{query.message}</p>
+            </div>
           </div>
         </div>
-        <div className="absolute bottom-0 max-w-screen-xl h-1/4 mx-auto flex flex-col items-center justify-center space-y-5">
-          <p className="text-xl font-semibold">Wat nu?</p>
-          <ArrowCircleDownIcon className="w-8 h-8 text-secondary animate-bounce" />
+        <div className="absolute bottom-0 max-w-screen-xl mx-auto h-1/4 flex flex-col items-center justify-center space-y-5">
+          <p className="text-xl">Wat nu?</p>
+          <ArrowCircleDownIcon
+            className="w-8 h-8 text-secondary animate-bounce"
+            onClick={() => infoRef.current.scrollIntoView({ behavior: "smooth" })}
+          />
         </div>
       </div>
-      <div className="px-4 py-20 max-w-screen-xl mx-auto">
-        <h1 className="text-5xl font-semibold">Wat nu?</h1>
-        <p className="text-lg max-w-screen-lg">
-          Bezoek de website <span className="text-secondary">NIET</span>. Eens je de website betreed
-          is de kans groot dat het al te laat is. Neem indien je nog steeds niet zeker bent contact
-          op met het hoofdkantoor van jouw bank om na te vragen of de acties die ze jouw proberen te
-          laten ondernemen wel degelijk nodig zijn en of zij daar van op de hoogte zijn. De
-          contactgegevens van jouw bank vind je meestal in je banking app op je smartphone of via de
-          officiele website van de desbetreffende bank.
-        </p>
+      <div
+        ref={infoRef}
+        className="max-w-screen-xl mx-auto px-4 py-20 space-y-16 lg:grid lg:grid-cols-2 lg:gap-10 sm:space-y-0"
+      >
+        <div className="space-y-3">
+          <h1 className="text-3xl font-semibold">Wat nu?</h1>
+          <p className="text-lg max-w-screen-lg">
+            Bezoek de link vooral NIET!!! De kans dat het al te laat is vanaf dat je de link bezoekt
+            is groot. Als volgende kan je via onderstaand formulier de phishing aangeven. Je kan
+            aangeven als welke bank de phisher zich voordeed en je kan kort omschrijven wat ze jou
+            probeerden te laten doen. Op deze manier kunnen wij de gegevens naar de juiste bank
+            rapporteren en zo de nodige stappen ondernemen tegen deze phisher.
+          </p>
+        </div>
+        <div className="space-y-5">
+          <h1 className="text-3xl font-semibold">
+            Phishing <span className="text-secondary">rapporteren</span>
+          </h1>
+          <p className="text-lg">
+            <span className="font-bold">URL: </span>
+            {query.testedUrl}
+          </p>
+          <div className="space-y-3">
+            <input
+              className="p-5 border-none bg-gray-50 w-full rounded-lg focus:outline-none ring-2 ring-gray-200 focus:ring-secondary"
+              type="text"
+              placeholder="Bank"
+            />
+            <textarea
+              className="p-5 resize-none border-none bg-gray-50 w-full rounded-lg focus:outline-none ring-2 ring-gray-200 focus:ring-secondary"
+              cols="30"
+              rows="7"
+              placeholder="Omschrijving van de phishing"
+            ></textarea>
+            <button className="w-full bg-secondary py-4 rounded-lg text-white font-semibold">
+              Rapporteer
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

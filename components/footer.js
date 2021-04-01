@@ -1,3 +1,4 @@
+import { CodeIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import React from "react";
 
@@ -19,8 +20,12 @@ export default function Footer() {
           <a href="#" className="text-secondary uppercase">
             Terms & Conditions
           </a>
-          <a href="https://www.qwebdesign.be/" className="text-white uppercase">
-            &#169; QWeb Design 2021
+          <a
+            href="https://www.qwebdesign.be/"
+            className="text-white uppercase flex space-x-2 items-center"
+          >
+            <CodeIcon className="h-5 w-5 text-white" />
+            <p>by QWeb Design 2021</p>
           </a>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArchiveIcon,
   ArrowCircleDownIcon,
@@ -11,9 +11,10 @@ import Navbar from "../components/navbar";
 export default function Home() {
   const [url, setUrl] = useState("");
   const router = useRouter();
+  const infoRef = useRef();
 
   const testUrl = async () => {
-    const response = await fetch("https://bank-check.be/api/test_url?url=" + url, {
+    const response = await fetch("https://api.bank-check.be/?url=" + url, {
       method: "POST",
       mode: "cors",
       credentials: "same-origin",
@@ -22,6 +23,22 @@ export default function Home() {
       },
     });
     return response.json();
+  };
+
+  const handleClick = () => {
+    testUrl().then((data) => {
+      if (data.status === "error") {
+        router.push({
+          pathname: "/responses/error",
+          query: { ...data, testedUrl: url },
+        });
+      } else if (data.status === "success") {
+        router.push({
+          pathname: "/responses/success",
+          query: data,
+        });
+      }
+    });
   };
 
   return (
@@ -37,30 +54,18 @@ export default function Home() {
             </div>
             <div className="w-full flex space-x-5">
               <input
-                className="p-5 bg-gray-50 w-full rounded-lg focus:outline-none ring-2 ring-gray-200 focus:ring-secondary"
+                className="p-5 border-none bg-gray-50 w-full rounded-lg focus:outline-none ring-2 ring-gray-200 focus:ring-secondary"
                 type="text"
                 placeholder="Vul hier je link in..."
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    handleClick();
+                  }
+                }}
               />
-              <div
-                className="p-5 bg-secondary cursor-pointer rounded-lg"
-                onClick={() =>
-                  testUrl().then((data) => {
-                    if (data.status === "error") {
-                      router.push({
-                        pathname: "/responses/error",
-                        query: data,
-                      });
-                    } else if (data.status === "success") {
-                      router.push({
-                        pathname: "/responses/success",
-                        query: data,
-                      });
-                    }
-                  })
-                }
-              >
+              <div className="p-5 bg-secondary cursor-pointer rounded-lg" onClick={handleClick}>
                 <ArrowRightIcon className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -68,11 +73,15 @@ export default function Home() {
         </div>
         <div className="max-w-screen-xl mx-auto h-1/4 flex flex-col items-center justify-center space-y-5">
           <p className="text-xl">Leer meer over phishing</p>
-          <ArrowCircleDownIcon className="w-8 h-8 text-secondary animate-bounce" />
+          <ArrowCircleDownIcon
+            className="w-8 h-8 text-secondary animate-bounce"
+            onClick={() => infoRef.current.scrollIntoView({ behavior: "smooth" })}
+          />
         </div>
       </div>
       <div
-        className="py-40 px-4 max-w-screen-xl mx-auto space-y-5 flex flex-col justify-center items-center"
+        ref={infoRef}
+        className="pt-72 pb-40 px-4 max-w-screen-xl mx-auto space-y-5 flex flex-col justify-center items-center"
         style={{
           backgroundImage: "url('/hook.svg')",
           backgroundRepeat: "no-repeat",
