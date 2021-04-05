@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { MailIcon } from "@heroicons/react/outline";
+import { toggleLocale } from "../locale/translation";
 export default function Navbar() {
   const [hitScrollPoint, setHitScrollPoint] = useState(false);
   const router = useRouter();
+  const { locale } = router;
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -31,11 +34,27 @@ export default function Navbar() {
           onClick={() => router.push("/")}
         />
         <div className="flex items-center space-x-5">
+          <div className="hidden sm:flex divide-x-2 space-x-2 ">
+            <p
+              className={`cursor-pointer ${locale === "nl" ? "text-secondary" : "text-black"}`}
+              onClick={() => toggleLocale("nl", router)}
+            >
+              NL
+            </p>
+            <p
+              className={`cursor-pointer pl-2 ${
+                locale === "en-US" ? "text-secondary" : "text-black"
+              }`}
+              onClick={() => toggleLocale("en-US", router)}
+            >
+              ENG
+            </p>
+          </div>
           <a
             href="mailto:info@bank-check.be"
-            className="uppercase font-bold text-lg cursor-pointer"
+            className="cursor-pointer p-4 rounded-full bg-secondary"
           >
-            Contact
+            <MailIcon className="w-6 h-6 text-white" />
           </a>
         </div>
       </div>
