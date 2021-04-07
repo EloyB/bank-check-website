@@ -35,7 +35,7 @@ const enUS = {
     first: {
       title: "A deep dive into phishing",
       description:
-        "Phishing is a form of cybersecurity. In this way a person tries to steal sensitive data from its victim. This can go from banking details to passwords or even a full identity. Once a phisher has access to this data he/she can inflict a big amount of damage to the victim.",
+        "Phishing is a form of cybercrime. In this way a person tries to steal sensitive data from its victim. This can go from banking details to passwords or even a full identity. Once a phisher has access to this data he/she can inflict a big amount of damage to the victim.",
     },
     second: {
       title: "In all shapes and sizes",
