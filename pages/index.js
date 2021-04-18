@@ -5,6 +5,7 @@ import {
   ArrowRightIcon,
   ChatIcon,
   CurrencyDollarIcon,
+  RefreshIcon,
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import parse from "html-react-parser";
@@ -12,6 +13,7 @@ import { activeLocale } from "../locale/translation";
 
 export default function Home() {
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const infoRef = useRef();
 
@@ -19,7 +21,7 @@ export default function Home() {
   const t = activeLocale(locale);
 
   const testUrl = async () => {
-    const response = await fetch("https://api.bank-check.be/?url=" + url, {
+    const response = await fetch("https://bank-check.my-api.be/?url=" + url, {
       method: "POST",
       mode: "cors",
       credentials: "same-origin",
@@ -31,19 +33,25 @@ export default function Home() {
   };
 
   const handleClick = () => {
-    testUrl().then((data) => {
-      if (data.status === "error") {
-        router.push({
-          pathname: "/responses/error",
-          query: { ...data, testedUrl: url },
-        });
-      } else if (data.status === "success") {
-        router.push({
-          pathname: "/responses/success",
-          query: data,
-        });
-      }
-    });
+    if (loading) {
+      return;
+    } else {
+      setLoading(true);
+      testUrl().then((data) => {
+        if (data.status === "error") {
+          router.push({
+            pathname: "/responses/error",
+            query: { ...data, testedUrl: url },
+          });
+        } else if (data.status === "success") {
+          router.push({
+            pathname: "/responses/success",
+            query: data,
+          });
+        }
+        setLoading(false);
+      });
+    }
   };
 
   return (
@@ -69,7 +77,11 @@ export default function Home() {
                 }}
               />
               <div className="p-5 bg-secondary cursor-pointer rounded-lg" onClick={handleClick}>
-                <ArrowRightIcon className="w-6 h-6 text-white" />
+                {loading ? (
+                  <RefreshIcon className="w-6 h-6 text-white animate animate-spin" />
+                ) : (
+                  <ArrowRightIcon className="w-6 h-6 text-white" />
+                )}
               </div>
             </div>
           </div>
