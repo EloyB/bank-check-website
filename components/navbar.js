@@ -49,6 +49,12 @@ export default function Navbar() {
             >
               ENG
             </p>
+            <p
+              className={`cursor-pointer pl-2 ${locale === "fr" ? "text-secondary" : "text-black"}`}
+              onClick={() => toggleLocale("fr", router)}
+            >
+              FR
+            </p>
           </div>
           <a
             href="mailto:info@bank-check.be"

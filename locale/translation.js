@@ -1,5 +1,5 @@
 export const activeLocale = (locale) => {
-  return locale === "en-US" ? enUS : nl;
+  return locale === "en-US" ? enUS : locale === "nl" ? nl : fr;
 };
 
 export const toggleLocale = (locale, router) => {
@@ -48,6 +48,13 @@ const enUS = {
         "Proven by the numbers above, phising is on the rise. That's why we decided to develop BankCheck. Using BankCheck we want to raise awareness around phising and try to lower those numbers. The chances that there is no way back when you have been phished is big. Therefore, get your links checked and strive for a safer internet.",
     },
   },
+  errorPage: {
+    description: {
+      title: "What now?",
+      paragraph:
+        "Above all, do NOT visit the link!!! The chance that it is already too late from the moment you visit the link is high. Next you can use the form to report the phishing. You can indicate which bank the phisher pretended to be and you can briefly describe what they tried to make you do. This way we can report the data to the correct bank and take the necessary steps against this phisher.",
+    },
+  },
 };
 
 const nl = {
@@ -91,6 +98,65 @@ const nl = {
       title: "En toen was er <span class='text-secondary'>BankCheck</span>",
       description:
         "Phishing is aan een stevige opmars bezig bewijzen de cijfers die hierboven staan vermeld. Daarom kwamen wij met het idee om BankCheck op te richten. Via BankCheck willen wij het bewustzijn rond phishing vergroten en zo ook de cijfers doen dalen. De kans dat, eens je gephished wordt, er geen weg meer terug is is groot. Daarom, laat jouw link checken en surf veiliger op het internet.",
+    },
+  },
+  errorPage: {
+    description: {
+      title: "Wat nu?",
+      paragraph:
+        "Bezoek de link vooral NIET!!! De kans dat het al te laat is vanaf dat je de link bezoekt is groot. Als volgende kan je via onderstaand formulier de phishing aangeven. Je kan aangeven als welke bank de phisher zich voordeed en je kan kort omschrijven wat ze jou probeerden te laten doen. Op deze manier kunnen wij de gegevens naar de juiste bank rapporteren en zo de nodige stappen ondernemen tegen deze phisher.",
+    },
+  },
+};
+
+const fr = {
+  heroSection: {
+    title: "Entrez votre <span class='text-secondary'>lien</span>",
+    subtitle: "Et faites-le vérifier pour le phishing",
+    inputPlaceholder: "Entrez votre lien ici...",
+    learnMore: "En savoir plus sur le phishing",
+  },
+  learnSection: {
+    title: "Ne vous laissez pas piéger par le <span class='text-secondary'>phishing</span>",
+    subtitle:
+      "Les escroqueries impliquant le vol d'informations financières confidentielles par courrier électronique ou par Internet",
+  },
+  numberSection: {
+    first: {
+      title: "32 millions",
+      subtitle: "d'euros volés par des hameçonneurs",
+    },
+    second: {
+      title: "3.200.000",
+      subtitle: "de messages suspects envoyés",
+    },
+    third: {
+      title: "3438",
+      subtitle: "cas de phishing",
+    },
+  },
+  infoSection: {
+    first: {
+      title: "Une plongée plus profonde dans le phishing",
+      description:
+        "Le phishing est une forme de cybercriminalité. Il s'agit d'essayer de mettre la main sur les données sensibles d'une personne. Il peut s'agir de coordonnées bancaires, de mots de passe ou même d'identités complètes. Une fois que le phisher a accès à ces données, il peut causer beaucoup de dommages à la victime.",
+    },
+    second: {
+      title: "Différentes formes et tailles",
+      description:
+        "Cela se produit de différentes manières. Les plus courants sont le courrier électronique, les SMS et le téléphone, mais le phishing se fait aussi via les médias sociaux ou même les codes QR. Le phisher se fait passer pour quelque chose ou quelqu'un d'autre, comme une banque ou un supermarché, afin de gagner votre confiance. Ils vous demanderont de remplir toutes sortes de détails et auront accès à toutes vos données sensibles.",
+    },
+    third: {
+      title: "Et puis il y a eu <span class='text-secondary'>BankCheck</span>",
+      description:
+        "Le phishing est en hausse, selon les chiffres ci-dessus. C'est pourquoi nous avons eu l'idée de créer BankCheck. Avec BankCheck, nous voulons sensibiliser les gens au phishing et en réduire le nombre. Le risque est grand qu'une fois que vous avez été victime d'un hameçonnage, vous ne puissiez plus revenir en arrière. Par conséquent, faites vérifier votre lien et surfez sur le web en toute sécurité.",
+    },
+  },
+  errorPage: {
+    description: {
+      title: "Et maintenant?",
+      paragraph:
+        "Surtout, ne visitez PAS le lien ! !! Il y a de fortes chances qu'il soit déjà trop tard à partir du moment où vous visitez le lien. Ensuite, vous pouvez utiliser le formulaire pour signaler le phishing. Vous pouvez indiquer quelle banque le phisher a prétendu être et vous pouvez décrire brièvement ce qu'il a essayé de vous faire faire. De cette façon, nous pouvons signaler les données à la bonne banque et prendre les mesures nécessaires contre ce phisher.",
     },
   },
 };

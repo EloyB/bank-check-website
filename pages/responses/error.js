@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 import { useRouter } from "next/router";
 import { ArrowCircleDownIcon, XCircleIcon } from "@heroicons/react/outline";
+import { activeLocale } from "../../locale/translation";
 
 export default function error() {
   const router = useRouter();
+  const { locale } = router;
+  const t = activeLocale(locale);
   const query = router.query;
   const infoRef = useRef();
   return (
@@ -23,7 +26,7 @@ export default function error() {
           </div>
         </div>
         <div className="absolute bottom-0 max-w-screen-xl mx-auto h-1/4 flex flex-col items-center justify-center space-y-5">
-          <p className="text-xl">Wat nu?</p>
+          <p className="text-xl">{t.errorPage.description.title}</p>
           <ArrowCircleDownIcon
             className="w-8 h-8 text-secondary animate-bounce"
             onClick={() => infoRef.current.scrollIntoView({ behavior: "smooth" })}
@@ -35,14 +38,8 @@ export default function error() {
         className="max-w-screen-xl mx-auto px-4 py-20 space-y-16 lg:grid lg:grid-cols-2 lg:gap-10 sm:space-y-0"
       >
         <div className="space-y-3">
-          <h1 className="text-3xl font-semibold">Wat nu?</h1>
-          <p className="text-lg max-w-screen-lg">
-            Bezoek de link vooral NIET!!! De kans dat het al te laat is vanaf dat je de link bezoekt
-            is groot. Als volgende kan je via onderstaand formulier de phishing aangeven. Je kan
-            aangeven als welke bank de phisher zich voordeed en je kan kort omschrijven wat ze jou
-            probeerden te laten doen. Op deze manier kunnen wij de gegevens naar de juiste bank
-            rapporteren en zo de nodige stappen ondernemen tegen deze phisher.
-          </p>
+          <h1 className="text-3xl font-semibold">{t.errorPage.description.title}</h1>
+          <p className="text-lg max-w-screen-lg">{t.errorPage.description.paragraph}</p>
         </div>
         <div className="space-y-5">
           <h1 className="text-3xl font-semibold">
