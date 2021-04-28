@@ -36,6 +36,12 @@ export default function Footer() {
           >
             ENG
           </p>
+          <p
+            className={`cursor-pointer pl-2 ${locale === "fr" ? "text-secondary" : "text-white"}`}
+            onClick={() => toggleLocale("fr", router)}
+          >
+            FR
+          </p>
         </div>
         <div className="flex flex-col space-y-5 items-center sm:flex-row sm:space-y-0 sm:space-x-10">
           <a href="#" className="text-secondary uppercase">
